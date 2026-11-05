@@ -1,0 +1,13 @@
+# Local tooling and working files (not part of the site)
+.DS_Store
+.claude/
+.agents/
+.impeccable/
+.taste-skill/
+skills-lock.json
+
+# Large source material kept locally
+4Cast-website-review_1.html
+/assets/
+*.docx
+/4cast_privacy_policy_heb.pdf
