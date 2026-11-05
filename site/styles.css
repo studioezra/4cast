@@ -922,3 +922,9 @@ h1, h2, h3, h4, p { margin: 0; }
 
 /* folded panel labels, larger (client request, 2026-11-05) */
 .panel__short { font-size: clamp(1.5rem, 2vw, 1.875rem); font-weight: 700; letter-spacing: -.01em; bottom: 2rem; }
+
+/* logo rail: no centre tick marks (client request, 2026-11-05) */
+.rail::before, .rail::after { display: none; }
+
+/* phones/tablets: the stacked panels size to their content (the desktop row height was leaking in) */
+@media (max-width: 900px) { .panels { height: auto; } }
