@@ -928,3 +928,7 @@ h1, h2, h3, h4, p { margin: 0; }
 
 /* phones/tablets: the stacked panels size to their content (the desktop row height was leaking in) */
 @media (max-width: 900px) { .panels { height: auto; } }
+
+/* temporary link to the prototype review file (remove before launch) */
+.foot__temp { grid-column: 1 / -1; justify-self: start; margin-top: 1rem; font-size: .8125rem; color: var(--ink-3); text-decoration: underline; text-underline-offset: .25em; }
+.foot__temp:hover { color: var(--sky); }
