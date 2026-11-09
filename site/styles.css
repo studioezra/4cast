@@ -1300,3 +1300,98 @@ a.btn:not([href]) { cursor: pointer; }
   .nav__list > li.has-sub:has(.sub a[aria-current="page"]) > button { position: relative; color: #fff; font-weight: 700; }
   .sub a[aria-current="page"] { background: var(--sea-3); box-shadow: inset 2px 0 0 var(--sky); }
 }
+
+/* ==========================================================================
+   CONTACT PAGE (2026-11-09): a simple title, email and social, then the two
+   offices, each with a dark map and a brand pin
+   ========================================================================== */
+.ct-intro { padding: clamp(9rem, 15vw, 12rem) var(--gut) clamp(3.5rem, 6vw, 5rem); }
+.ct-kicker { font-size: .8125rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--sky); }
+.ct-title { margin-top: 1.25rem; font-size: clamp(2.4rem, 5.4vw, 5rem); line-height: 1.04; letter-spacing: -.035em; max-width: 18ch; text-wrap: balance; }
+.ct-title .t-thin { color: rgba(232, 238, 244, .72); }
+.ct-lede { margin-top: 1.5rem; font-size: clamp(1.125rem, 1.6vw, 1.375rem); line-height: 1.5; color: var(--ink-2); max-width: 44ch; }
+.ct-reach { margin-top: clamp(2.5rem, 5vw, 3.5rem); display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 2.5rem; }
+.ct-mail {
+  font-size: clamp(1.25rem, 2.4vw, 2rem); font-weight: 600; letter-spacing: -.02em; color: #fff; text-decoration: none;
+  background: var(--grad) 0 100% / 100% 2px no-repeat; padding-bottom: .2em;
+  transition: color .2s var(--ease-out);
+}
+@media (hover: hover) { .ct-mail:hover { color: var(--sky); } }
+.ct-social { list-style: none; margin: 0; padding: 0; display: flex; gap: .6rem; }
+.ct-social a, .ct-dir {
+  display: inline-flex; align-items: center; gap: .45rem; padding: .6em 1.05em; border-radius: 999px;
+  font-size: .9375rem; font-weight: 500; color: var(--ink); text-decoration: none; box-shadow: inset 0 0 0 1px var(--rule-2);
+  transition: box-shadow .2s var(--ease-out), color .2s var(--ease-out), transform .16s var(--ease-out);
+}
+.ct-social svg, .ct-dir svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+@media (hover: hover) { .ct-social a:hover, .ct-dir:hover { color: #fff; box-shadow: inset 0 0 0 1px var(--sky); } }
+.ct-social a:active, .ct-dir:active { transform: scale(.97); }
+
+.ct-offices { padding: 0 var(--gut) clamp(7rem, 12vw, 10rem); }
+.ct-offices__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1rem, 2.5vw, 2rem); }
+.ct-office { border-radius: 22px; overflow: hidden; background: var(--night-2); box-shadow: inset 0 0 0 1px var(--rule); display: flex; flex-direction: column; }
+.ct-map { aspect-ratio: 16 / 10; background: #0b1320; isolation: isolate; }
+.ct-office__body { padding: clamp(1.5rem, 3vw, 2.25rem); display: grid; gap: .3rem; justify-items: start; flex: 1; align-content: start; }
+.ct-office__place { font-size: .8125rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--sky); }
+.ct-office__name { margin-top: .35rem; font-size: clamp(1.5rem, 2.4vw, 2rem); font-weight: 800; letter-spacing: -.025em; line-height: 1.1; }
+.ct-office__addr { margin-top: .6rem; font-style: normal; font-size: 1.0625rem; line-height: 1.55; color: var(--ink-2); max-width: 32ch; }
+.ct-office__phones { list-style: none; margin: .9rem 0 0; padding: 0; display: grid; gap: .25rem; }
+.ct-office__phones a { font-size: 1.125rem; font-weight: 600; color: var(--ink); text-decoration: none; font-variant-numeric: tabular-nums; }
+@media (hover: hover) { .ct-office__phones a:hover { color: var(--sky); } }
+.ct-dir { margin-top: 1.5rem; }
+
+/* the map: dark tiles pulled a little toward the brand blue, a glowing brand pin */
+.ct-map .leaflet-tile-pane { filter: saturate(1.3) hue-rotate(-8deg) brightness(1.08); }
+.ct-map .leaflet-control-attribution { background: rgba(5, 11, 19, .75); color: var(--ink-3); font-size: 10px; }
+.ct-map .leaflet-control-attribution a { color: var(--ink-2); }
+.ct-map .leaflet-bar a { background: var(--night-2); color: var(--ink); border-color: var(--rule); }
+.ct-map .leaflet-bar a:hover { background: #16263b; }
+.ct-pin span { position: relative; display: block; width: 28px; height: 28px; border-radius: 50%; background: var(--grad); box-shadow: 0 0 0 4px rgba(255, 255, 255, .9), 0 6px 18px rgba(0, 0, 0, .5); }
+.ct-pin span::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; box-shadow: 0 0 0 2px rgba(71, 174, 227, .8); animation: ct-ping 2.4s var(--ease-out) infinite; }
+@keyframes ct-ping { 0% { transform: scale(1); opacity: 1; } 80%, 100% { transform: scale(2.6); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .ct-pin span::after { animation: none; opacity: 0; } }
+
+@media (max-width: 900px) {
+  .ct-intro, .ct-offices { padding-inline: 16px; }
+  .ct-offices__grid { grid-template-columns: 1fr; }
+  .ct-mail { font-size: 1.125rem; word-break: break-all; }
+}
+
+/* contact page, round two (2026-11-09): title on two lines, an email card, social icons,
+   and Google Maps under each office's text, turned dark to match the site */
+
+.ct-mail {
+  display: inline-flex; align-items: center; gap: 1rem; padding: .75rem 1.1rem .75rem .75rem; border-radius: 20px;
+  background: var(--night-2); box-shadow: inset 0 0 0 1px var(--rule-2); color: var(--ink); text-decoration: none;
+  transition: box-shadow .25s var(--ease-out), transform .16s var(--ease-out);
+}
+.ct-mail__icon { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 14px; background: var(--grad); flex: none; }
+.ct-mail__icon svg { width: 24px; height: 24px; fill: none; stroke: #fff; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.ct-mail__text { display: grid; gap: .15rem; }
+.ct-mail__label { font-size: .75rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--sky); }
+.ct-mail__addr { font-size: clamp(1.0625rem, 1.8vw, 1.375rem); font-weight: 600; letter-spacing: -.01em; color: #fff; }
+.ct-mail__go { display: grid; place-items: center; width: 36px; height: 36px; margin-left: .5rem; border-radius: 50%; box-shadow: inset 0 0 0 1px var(--rule-2); color: var(--sky); transition: transform .25s var(--ease-out), background-color .25s var(--ease-out), color .25s var(--ease-out); }
+.ct-mail__go svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+@media (hover: hover) {
+  .ct-mail:hover { box-shadow: inset 0 0 0 1px var(--sky), 0 18px 40px -24px rgba(71, 174, 227, .6); }
+  .ct-mail:hover .ct-mail__go { transform: translateX(3px); background: var(--sky); color: var(--night); }
+}
+.ct-mail:active { transform: scale(.98); }
+
+.ct-social a { padding: .7em 1.15em .7em .9em; gap: .55rem; }
+.ct-social .ct-ico { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Google's map in black and white, as on the current 4cast-ai.com contact page */
+.ct-map { aspect-ratio: 16 / 9; background: #0b1320; overflow: hidden; }
+.ct-map iframe { display: block; width: 100%; height: 100%; border: 0;
+  filter: saturate(0); }
+
+@media (max-width: 900px) {
+  .ct-mail { width: 100%; }
+  .ct-mail__addr { font-size: 1rem; word-break: break-all; }
+  .ct-mail__go { margin-left: auto; }
+}
+@media (max-width: 900px) { .ct-mail { gap: .8rem; } .ct-mail__icon { width: 44px; height: 44px; border-radius: 12px; } .ct-mail__go { display: none; } .ct-mail__addr { font-size: 1rem; word-break: normal; white-space: nowrap; } }
+
+/* footer site map trimmed to three columns to match the menu (client request, 2026-11-09) */
+@media (min-width: 901px) { .foot__cols { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
