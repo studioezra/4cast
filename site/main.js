@@ -290,7 +290,6 @@
     ['#problem .h2', '#problem .prose > *'], ['.console__title', '.bearings__grid'], ['.statement'],
     ['#platform .h2', '#platform .lede'], ['.steps > li'], ['.motto'],
     ['#why .h2'], ['.superiority'],
-    ['#trust-title'], ['.pillar'],
     ['#serve .h2', '#serve .arch'], ['.panels'], ['.also'],
     ['.storm-none']
   ];
