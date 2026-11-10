@@ -77,8 +77,9 @@
   });
 
   /* ---------- entrances: heading block, then each capability (text then screen) ---------- */
-  const groups = [['.pf-title', '.pf-sub', '.pf-intro > *']];
+  const groups = [['.pf-sub', '.pf-title', '.pf-intro > *']];
   $$('.cap').forEach(c => groups.push([`#${c.id} .cap__text`, `#${c.id} .cap__media`]));
+  groups.push(['.pf-int__text > *', '.pf-int__media']);
   groups.push(['#trust-title'], ['.pillar']);
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -12% 0px' });
   groups.forEach(sels => {

@@ -929,9 +929,6 @@ h1, h2, h3, h4, p { margin: 0; }
 /* phones/tablets: the stacked panels size to their content (the desktop row height was leaking in) */
 @media (max-width: 900px) { .panels { height: auto; } }
 
-/* temporary link to the prototype review file (remove before launch) */
-.foot__temp { grid-column: 1 / -1; justify-self: start; margin-top: 1rem; font-size: .8125rem; color: var(--ink-3); text-decoration: underline; text-underline-offset: .25em; }
-.foot__temp:hover { color: var(--sky); }
 
 /* ==========================================================================
    Platform page (platform.html): night page, alternating capability rows,
@@ -1395,3 +1392,385 @@ a.btn:not([href]) { cursor: pointer; }
 
 /* footer site map trimmed to three columns to match the menu (client request, 2026-11-09) */
 @media (min-width: 901px) { .foot__cols { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+/* header subtitle as a page label above the title, with a glowing sky dot (option B, client request, 2026-11-10).
+   Shared by the Platform and Defense headers. */
+.pf-sub { display: flex; align-items: center; gap: .75rem; margin: 0 0 1.5rem; padding: 0; border-radius: 0; background: none; box-shadow: none;
+  -webkit-text-fill-color: #fff; color: #fff; font-size: clamp(1rem, 1.35vw, 1.1875rem); font-weight: 600; letter-spacing: -.005em; text-transform: none; }
+.pf-sub::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: #7fd3ff; box-shadow: 0 0 0 5px rgba(127, 211, 255, .25); flex: none; }
+.pf-hero .pf-title + .pf-intro { margin-top: 1.75rem; }
+
+/* subtitle under "Platform features" (client request, 2026-11-10): the title keeps its gap to the list */
+.pf-caps__title { margin-bottom: 0; }
+.pf-caps__sub { max-width: var(--max); margin: .75rem auto clamp(5rem, 9vw, 8rem); font-size: clamp(1.375rem, 2.2vw, 1.875rem); font-weight: 300; line-height: 1.3; letter-spacing: -.015em; color: var(--ink-2); }
+
+/* "See 4Cast in action": breathes and glows together, a slight zoom in and out with a soft sky halo
+   that swells at the peak, on a loop once the hero copy has arrived (client request, 2026-11-10) */
+@media (prefers-reduced-motion: no-preference) {
+  .hero__cta .btn { animation: cta-breathe 2.6s ease-in-out 5.4s infinite; }
+  .hero__cta .btn:hover { animation-play-state: paused; }
+}
+@keyframes cta-breathe {
+  0%, 100% { scale: 1; box-shadow: 0 0 0 0 rgba(71, 174, 227, 0), 0 0 0 0 rgba(71, 174, 227, 0); }
+  50% { scale: 1.08; box-shadow: 0 0 0 2px rgba(71, 174, 227, .85), 0 0 48px 10px rgba(71, 174, 227, .75); }
+}
+
+/* platform: data integration, after the features (client request, 2026-11-10) */
+.pf-int { padding: 0 var(--gut) clamp(8rem, 13vw, 11rem); }
+.pf-int__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: clamp(2.5rem, 6vw, 6rem); align-items: center; }
+.pf-int__kicker { font-size: .8125rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--sky); }
+.pf-int__title { margin-top: 1rem; font-size: clamp(2rem, 3.8vw, 3.5rem); max-width: 16ch; }
+.pf-int__title .t-thin { display: block; color: rgba(232, 238, 244, .72); }
+.pf-int__title .t-heavy { display: block; }
+.pf-int__lede { margin-top: 1.5rem; font-size: clamp(1.1875rem, 1.6vw, 1.375rem); line-height: 1.5; color: var(--ink); max-width: 36ch; }
+.pf-int__p { margin-top: 1rem; font-size: 1.0625rem; line-height: 1.65; color: var(--ink-2); max-width: 46ch; }
+.pf-int__tags { list-style: none; margin: 1.75rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem; }
+.pf-int__tags li { padding: .5em .95em; border-radius: 10px; font-size: .9375rem; font-weight: 500; color: var(--ink); background: var(--night-2); box-shadow: inset 0 0 0 1px var(--rule-2); }
+/* the screenshot in an app window */
+.pf-int__win { margin: 0; border-radius: 16px; overflow: hidden; background: var(--night-2);
+  box-shadow: inset 0 0 0 1px var(--rule-2), 0 40px 90px -40px rgba(53, 147, 208, .55), 0 0 0 1px rgba(71, 174, 227, .12); }
+.pf-int__bar { display: flex; align-items: center; gap: .45rem; padding: .8rem 1rem; font-size: .875rem; font-weight: 500; color: var(--ink-2); border-bottom: 1px solid var(--rule); }
+.pf-int__bar span { width: 9px; height: 9px; border-radius: 50%; background: rgba(200, 218, 234, .25); }
+.pf-int__bar span:last-of-type { margin-right: .6rem; }
+.pf-int__win img { display: block; width: 100%; height: auto; }
+@media (max-width: 900px) {
+  .pf-int { padding-inline: 16px; }
+  .pf-int__grid { grid-template-columns: 1fr; }
+}
+/* screenshot shown on its own, no window frame */
+.pf-int__win { background: none; border-radius: 14px; box-shadow: 0 40px 90px -40px rgba(53, 147, 208, .55); }
+/* data integration: the gateway video in the same tilted, lit screen as the feature videos,
+   on the right so it leans like the flipped rows */
+.pf-int .cap__screen { transform: rotateY(6deg) rotateX(2deg); transform-origin: 100% 50%; }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) { .pf-int__media:hover .cap__screen { transform: rotateY(2deg) rotateX(1deg); } }
+@media (max-width: 900px) { .pf-int .cap__screen { transform: none; } }
+
+/* ==========================================================================
+   GOVERNMENT PAGE (2026-11-10): header band, the challenge, the solution,
+   agency value, why 4Cast, FAQ and a closing statement (no demo button)
+   ========================================================================== */
+.gv-hero .pf-title { max-width: 20ch; }
+.gv-intro { grid-template-columns: minmax(0, 1fr); max-width: 52rem; }
+
+.gv-kicker { font-size: .8125rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--sky); }
+.sheet--day .gv-kicker { color: var(--blue); }
+.gv-h2 { margin-top: 1rem; font-size: clamp(2rem, 4vw, 3.75rem); max-width: 20ch; }
+.gv-h2 .t-thin { display: block; }
+.gv-lead { margin-top: 1.5rem; font-size: clamp(1.125rem, 1.6vw, 1.375rem); line-height: 1.5; max-width: 46ch; }
+.sheet--day .gv-lead { color: var(--d-ink-2); }
+.gv-sec .gv-lead, .sheet--night .gv-lead { color: var(--ink-2); }
+
+/* the challenge */
+.gv-sec { padding: clamp(6rem, 11vw, 9rem) var(--gut) clamp(8rem, 13vw, 11rem); }
+.gv-challenge .gv-h2 .t-thin { color: rgba(232, 238, 244, .72); }
+.gv-imps { list-style: none; margin: clamp(2.5rem, 5vw, 3.5rem) 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1rem, 2vw, 1.5rem); }
+.gv-imp { position: relative; padding: clamp(1.75rem, 3.5vw, 2.75rem); border-radius: 22px; background: var(--night-2); box-shadow: inset 0 0 0 1px var(--rule); overflow: hidden; }
+.gv-imp__n { display: block; font-size: clamp(3rem, 6vw, 5rem); font-weight: 200; line-height: .9; letter-spacing: -.04em; color: var(--sky); }
+.gv-imp__h { margin-top: 1.25rem; font-size: clamp(1.375rem, 2.2vw, 1.875rem); font-weight: 800; line-height: 1.15; letter-spacing: -.025em; color: var(--ink); }
+.gv-imp__p { margin-top: .85rem; font-size: 1.0625rem; line-height: 1.6; color: var(--ink-2); max-width: 44ch; }
+.gv-intuition { margin-top: clamp(4.5rem, 9vw, 7rem); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(2rem, 6vw, 6rem); align-items: start; }
+.gv-intuition__h { font-size: clamp(1.75rem, 3.2vw, 2.75rem); line-height: 1.08; letter-spacing: -.03em; }
+.gv-intuition__h .t-thin { display: block; font-weight: 200; color: rgba(232, 238, 244, .72); }
+.gv-intuition__h .t-heavy { display: block; font-weight: 800; }
+.gv-intuition__p { font-size: 1.125rem; line-height: 1.6; color: var(--ink-2); }
+.gv-needs { list-style: none; margin: 1.5rem 0 0; padding: 0; display: grid; }
+.gv-needs li { position: relative; padding: 1rem 0 1rem 2.25rem; border-top: 1px solid var(--rule); font-size: 1.1875rem; font-weight: 600; line-height: 1.4; color: var(--ink); }
+.gv-needs li:last-child { border-bottom: 1px solid var(--rule); }
+.gv-needs li::before { content: ""; position: absolute; left: 0; top: 1.65rem; width: 16px; height: 2px; border-radius: 2px; background: var(--grad); }
+
+/* the solution */
+.gv-caps { list-style: none; margin: clamp(3rem, 6vw, 4.5rem) 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1rem, 2vw, 1.5rem); }
+.gv-cap { padding: clamp(1.5rem, 3vw, 2.25rem); border-radius: 20px; background: #fff; box-shadow: inset 0 0 0 1px rgba(11, 26, 43, .08), 0 24px 48px -36px rgba(11, 26, 43, .4); }
+.gv-cap__n { font-size: .8125rem; font-weight: 700; letter-spacing: .12em; color: var(--blue); }
+.gv-cap__h { margin-top: 1rem; font-size: clamp(1.25rem, 1.8vw, 1.5rem); font-weight: 800; line-height: 1.2; letter-spacing: -.02em; color: var(--d-ink); }
+.gv-cap__p { margin-top: .7rem; font-size: 1.0625rem; line-height: 1.55; color: var(--d-ink-2); }
+
+/* agency value */
+.gv-agencies .gv-h2 .t-thin { color: rgba(232, 238, 244, .72); }
+.gv-agency-list { list-style: none; margin: clamp(3rem, 6vw, 4.5rem) 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1rem, 2vw, 1.5rem); }
+.gv-agency { position: relative; padding: clamp(1.75rem, 3.5vw, 2.5rem); border-radius: 22px; background: var(--night-2); box-shadow: inset 0 0 0 1px var(--rule); }
+.gv-agency::before { content: ""; position: absolute; left: clamp(1.75rem, 3.5vw, 2.5rem); top: 0; width: 48px; height: 3px; border-radius: 0 0 3px 3px; background: var(--grad); }
+.gv-agency__h { font-size: clamp(1.375rem, 2.2vw, 1.75rem); font-weight: 800; line-height: 1.2; letter-spacing: -.025em; color: var(--ink); }
+.gv-agency__scope { display: block; margin-top: .4rem; font-size: .9375rem; font-weight: 500; letter-spacing: .02em; color: var(--sky); }
+.gv-agency__p { margin-top: 1rem; font-size: 1.0625rem; line-height: 1.65; color: var(--ink-2); }
+
+/* why 4Cast */
+.gv-why-list { list-style: none; margin: clamp(3rem, 6vw, 4.5rem) 0 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(1rem, 2vw, 1.5rem); }
+.gv-why { padding-top: 1.5rem; border-top: 2px solid rgba(11, 26, 43, .12); }
+.gv-why__i { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--grad); }
+.gv-why__i svg { width: 20px; height: 20px; fill: none; stroke: #fff; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.gv-why__h { margin-top: 1.1rem; font-size: 1.25rem; font-weight: 800; letter-spacing: -.02em; color: var(--d-ink); }
+.gv-why__p { margin-top: .5rem; font-size: 1rem; line-height: 1.55; color: var(--d-ink-2); }
+
+/* FAQ */
+.gv-faq__grid { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(2rem, 6vw, 6rem); align-items: start; }
+.gv-faq__title { margin-top: 0; max-width: 12ch; }
+.gv-faq__list { display: grid; }
+.gv-faq__item { border-top: 1px solid var(--rule); }
+.gv-faq__item:last-child { border-bottom: 1px solid var(--rule); }
+.gv-faq__item summary { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding: 1.4rem 0; cursor: pointer; list-style: none;
+  font-size: clamp(1.125rem, 1.6vw, 1.3125rem); font-weight: 600; line-height: 1.35; color: var(--ink); }
+.gv-faq__item summary::-webkit-details-marker { display: none; }
+.gv-faq__item summary:focus-visible { outline: 2px solid var(--sky); outline-offset: 4px; border-radius: 6px; }
+.gv-faq__icon { flex: none; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; box-shadow: inset 0 0 0 1px var(--rule-2); color: var(--sky); transition: transform .3s var(--ease-out), background-color .3s var(--ease-out), color .3s var(--ease-out); }
+.gv-faq__icon svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; }
+.gv-faq__item[open] .gv-faq__icon { transform: rotate(45deg); background: var(--sky); color: var(--night); box-shadow: none; }
+@media (hover: hover) { .gv-faq__item summary:hover .gv-faq__icon { box-shadow: inset 0 0 0 1px var(--sky); } }
+.gv-faq__item p { padding: 0 3.5rem 1.5rem 0; font-size: 1.0625rem; line-height: 1.65; color: var(--ink-2); }
+.gv-faq__item[open] p { animation: df-in .4s var(--ease-out); }
+
+/* closing statement */
+.gv-close {
+  margin-top: clamp(6rem, 11vw, 9rem); position: relative; overflow: hidden; isolation: isolate;
+  padding: clamp(3rem, 7vw, 5.5rem) clamp(1.75rem, 5vw, 4.5rem); border-radius: 28px; color: #fff; text-align: center;
+  background: linear-gradient(118deg, #693296 0%, #3d4fb3 22%, #226BC4 42%, #3593d0 58%, #3d4fb3 78%, #693296 100%);
+  background-size: 260% 260%; animation: pf-flow 16s ease-in-out infinite alternate;
+}
+.gv-close::before { content: ""; position: absolute; z-index: -1; width: 55%; height: 200%; left: -10%; top: -50%; border-radius: 50%; filter: blur(60px); background: radial-gradient(closest-side, rgba(170, 90, 230, .6), transparent); animation: pf-cloud-a 12s ease-in-out infinite; pointer-events: none; }
+.gv-close__h { font-size: clamp(1.875rem, 3.8vw, 3.5rem); line-height: 1.08; letter-spacing: -.03em; max-width: 22ch; margin-inline: auto; text-wrap: balance; }
+.gv-close__h .t-thin { font-weight: 200; color: rgba(255, 255, 255, .85); }
+.gv-close__h .t-heavy { font-weight: 800; }
+.gv-close__p { margin: 1.5rem auto 0; font-size: clamp(1.0625rem, 1.5vw, 1.25rem); line-height: 1.6; color: rgba(255, 255, 255, .9); max-width: 50ch; }
+@media (prefers-reduced-motion: reduce) { .gv-close, .gv-close::before { animation: none; } }
+
+@media (max-width: 1100px) { .gv-why-list { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 900px) {
+  .gv-sec { padding-inline: 16px; }
+  .gv-imps, .gv-intuition, .gv-caps, .gv-agency-list, .gv-faq__grid { grid-template-columns: 1fr; }
+  .gv-why-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .gv-faq__item p { padding-right: 0; }
+}
+@media (max-width: 520px) { .gv-why-list { grid-template-columns: 1fr; } }
+
+/* government header photo: the conference hall, blended like the defense convoy (client photo, 2026-11-10) */
+.gv-hero .pf-hero__img { background-image: url("assets/government/government-bg.jpg"); background-position: 70% 50%; mix-blend-mode: luminosity; opacity: .6; }
+/* manual line break in the challenge lead, desktop only */
+@media (max-width: 600px) { .gv-br { display: none; } }
+
+/* two imperatives as calm vs. storm (option A, 2026-11-10): day-to-day is a quiet card with a flat line,
+   crisis is the living brand gradient with a spiking line */
+.gv-imp__k { font-size: .8125rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--sky); }
+.gv-imp__line { display: block; width: 100%; height: 40px; margin: 1.5rem 0 .5rem; overflow: visible; }
+.gv-imp__line path { fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.gv-imp--calm .gv-imp__line path { stroke: var(--sky); opacity: .75; }
+.gv-imp--storm {
+  background: linear-gradient(140deg, #693296 0%, #3d4fb3 40%, #226BC4 75%, #3593d0 100%); background-size: 200% 200%;
+  box-shadow: 0 30px 70px -36px rgba(105, 50, 150, .7); animation: pf-flow 12s ease-in-out infinite alternate;
+}
+.gv-imp--storm .gv-imp__k, .gv-imp--storm .gv-imp__h { color: #fff; }
+.gv-imp--storm .gv-imp__p { color: rgba(255, 255, 255, .9); }
+.gv-imp--storm .gv-imp__line path { stroke: #fff; }
+@media (prefers-reduced-motion: reduce) { .gv-imp--storm { animation: none; } }
+/* solution capabilities: line icons in place of the numbers (client request, 2026-11-10) */
+.gv-cap__icon { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 14px; background: linear-gradient(140deg, rgba(105, 50, 150, .1), rgba(34, 107, 196, .12)); color: var(--blue); }
+.gv-cap__icon svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+/* capability icons: the platform trust icon style (gradient line icons, no tile) */
+.gv-cap .gv-cap__ico { margin-bottom: 1.1rem; }
+
+/* solution cards: the same hover as the platform trust tiles, a small lift and a soft brand glow that fades in
+   (client request, 2026-11-10) */
+.gv-cap { position: relative; z-index: 0; transition: translate .35s var(--ease-out), box-shadow .45s ease; }
+.js .gv-cap.rv {
+  transition: opacity .7s var(--ease-out), transform .7s var(--ease-out), box-shadow .45s ease, translate .35s var(--ease-out);
+  transition-delay: calc(var(--rv, 0) * 70ms), calc(var(--rv, 0) * 70ms), 0s, 0s;
+}
+@media (hover: hover) and (pointer: fine) {
+  .gv-cap:hover {
+    z-index: 2; translate: 0 -3px;
+    box-shadow: inset 0 0 0 1px rgba(11, 26, 43, .08),
+      -18px 12px 48px -18px rgba(105, 50, 150, .28),
+      0 20px 48px -22px rgba(34, 107, 196, .32),
+      18px 14px 52px -18px rgba(71, 174, 227, .3);
+  }
+}
+
+/* agency cards: each washed with its own slice of the brand gradient, purple to sky across the four
+   (option E, client request, 2026-11-10); the small gradient tab on top is no longer needed */
+.gv-agency::before { display: none; }
+.gv-agency:nth-child(1) { background: linear-gradient(150deg, rgba(105, 50, 150, .45), var(--night-2) 70%); box-shadow: inset 0 0 0 1px rgba(164, 106, 214, .3); }
+.gv-agency:nth-child(2) { background: linear-gradient(150deg, rgba(61, 79, 179, .45), var(--night-2) 70%); box-shadow: inset 0 0 0 1px rgba(124, 127, 240, .3); }
+.gv-agency:nth-child(3) { background: linear-gradient(150deg, rgba(34, 107, 196, .45), var(--night-2) 70%); box-shadow: inset 0 0 0 1px rgba(79, 147, 236, .3); }
+.gv-agency:nth-child(4) { background: linear-gradient(150deg, rgba(53, 147, 208, .45), var(--night-2) 70%); box-shadow: inset 0 0 0 1px rgba(92, 192, 238, .3); }
+
+/* FAQ: answers slide open and closed (height + fade, driven by government.js); the icon follows .is-open
+   so it turns back as soon as an answer starts closing (client request, 2026-11-10) */
+.gv-faq__a { overflow: hidden; }
+.gv-faq__item[open] p { animation: none; }
+.gv-faq__item[open] .gv-faq__icon { transform: none; background: none; color: var(--sky); box-shadow: inset 0 0 0 1px var(--rule-2); }
+.gv-faq__item.is-open .gv-faq__icon { transform: rotate(45deg); background: var(--sky); color: var(--night); box-shadow: none; }
+
+/* ==========================================================================
+   UTILITIES PAGE (2026-11-10): built on the Government page's parts (kicker, h2,
+   capability cards, FAQ, closing) and the Defense tabs, plus its own sections
+   ========================================================================== */
+.ut-hero .pf-hero__img { background-image: url("assets/sectors/utilities.jpg"); background-position: 70% 40%; mix-blend-mode: luminosity; opacity: .5; }
+.ut-hero .pf-title { max-width: 18ch; }
+.ut-intro { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; }
+
+/* the six systems feeding one Decision Intelligence Layer */
+.ut-stack { display: grid; gap: .6rem; }
+.ut-sys { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: .4rem; }
+.ut-sys li { padding: .55rem 0; border-radius: 10px; text-align: center; font-size: .875rem; font-weight: 600; color: #fff;
+  background: rgba(255, 255, 255, .12); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .25); }
+.ut-layer { padding: .8rem 1rem; border-radius: 12px; text-align: center; font-size: .8125rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--d-ink); background: #fff; box-shadow: 0 14px 30px -16px rgba(11, 26, 43, .6); }
+.ut-stack__p { margin-top: .6rem; font-size: 1rem; line-height: 1.6; color: rgba(255, 255, 255, .88); font-weight: 400; }
+
+/* the core challenges */
+.ut-challenges .gv-h2 { max-width: 24ch; }
+.ut-challenges .gv-h2 .t-thin, .ut-capabilities .gv-h2 .t-thin, .ut-storm .gv-h2 .t-thin { color: rgba(232, 238, 244, .72); }
+.ut-ch-list { list-style: none; margin: clamp(3rem, 6vw, 4.5rem) 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(1.25rem, 2.5vw, 2rem); }
+.ut-ch { padding-top: 1.5rem; border-top: 2px solid var(--rule-2); }
+.ut-ch__n { display: block; font-size: clamp(2.5rem, 4.5vw, 3.75rem); font-weight: 200; line-height: 1; letter-spacing: -.04em; color: var(--sky); }
+.ut-ch__h { margin-top: 1.25rem; font-size: clamp(1.25rem, 1.8vw, 1.5rem); font-weight: 800; line-height: 1.2; letter-spacing: -.02em; color: var(--ink); }
+.ut-ch__p { margin-top: .6rem; font-size: 1.0625rem; line-height: 1.55; color: var(--ink-2); }
+
+/* decisions: the Defense tabs with a question and its answer */
+.ut-tabs { margin-top: clamp(3rem, 6vw, 4.5rem); }
+.ut-panel { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; }
+.ut-panel__q { font-size: clamp(1.875rem, 3.4vw, 3rem); font-weight: 800; line-height: 1.08; letter-spacing: -.03em; color: var(--d-ink); text-wrap: balance; }
+.ut-panel__a { font-size: clamp(1.1875rem, 1.7vw, 1.4375rem); line-height: 1.5; color: var(--d-ink-2); max-width: 36ch; }
+.ut-tags { list-style: none; margin: 1.25rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem; }
+.ut-tags li { padding: .45em .95em; border-radius: 999px; font-size: .9375rem; font-weight: 600; color: var(--blue); background: rgba(34, 107, 196, .08); box-shadow: inset 0 0 0 1px rgba(34, 107, 196, .25); }
+
+/* capabilities: the Government cards, white on dark */
+.ut-capabilities .gv-caps { margin-top: clamp(3rem, 6vw, 4.5rem); }
+
+/* quantifiable outcomes */
+.ut-out-list { list-style: none; margin: clamp(3rem, 6vw, 4.5rem) 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(1rem, 2vw, 1.5rem); }
+.ut-out { padding: clamp(1.5rem, 3vw, 2rem); border-radius: 20px; background: #fff; box-shadow: inset 0 0 0 1px rgba(11, 26, 43, .08), 0 24px 48px -36px rgba(11, 26, 43, .4); display: flex; flex-direction: column; }
+.ut-out__pre { font-size: 1rem; line-height: 1.45; color: var(--d-ink-2); }
+.ut-out__v { margin: .5rem 0 .4rem; font-size: clamp(2.5rem, 4.4vw, 3.75rem); font-weight: 800; line-height: 1; letter-spacing: -.04em; color: var(--blue); }
+.ut-out__post { font-size: 1rem; line-height: 1.45; color: var(--d-ink); font-weight: 600; }
+
+/* why utilities choose 4Cast, on the brand gradient field */
+.ut-why .gv-kicker { color: rgba(255, 255, 255, .85); }
+.ut-why .gv-h2 { max-width: 22ch; }
+.ut-why .gv-h2 .t-thin { color: rgba(255, 255, 255, .82); }
+.ut-why__p { margin-top: 1.75rem; font-size: clamp(1.125rem, 1.7vw, 1.4375rem); line-height: 1.55; color: rgba(255, 255, 255, .92); max-width: 52ch; }
+
+/* storm resilience scenario */
+.ut-storm__top { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: clamp(2rem, 6vw, 6rem); align-items: start; }
+.ut-storm .gv-h2 { margin-top: 0; }
+.ut-storm__p { font-size: 1.125rem; line-height: 1.65; color: var(--ink-2); }
+.ut-storm__grid { margin-top: clamp(3.5rem, 7vw, 5rem); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 4rem); align-items: start; }
+.ut-storm__h { font-size: .8125rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--sky); margin-bottom: 1rem; }
+.ut-storm__q li { font-size: 1.0625rem; font-weight: 500; }
+.ut-flow { list-style: none; margin: 0; padding: 0; display: grid; gap: .75rem; position: relative; }
+.ut-flow__step { position: relative; display: flex; align-items: center; gap: 1rem; padding: 1.1rem 1.25rem; border-radius: 16px; background: var(--night-2); box-shadow: inset 0 0 0 1px var(--rule); font-size: 1.0625rem; font-weight: 600; color: var(--ink); }
+.ut-flow__step:not(:last-child)::after { content: ""; position: absolute; left: calc(1.25rem + 17px); bottom: -.75rem; width: 2px; height: .75rem; background: var(--grad); }
+.ut-flow__n { flex: none; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; font-size: .9375rem; font-weight: 700; color: var(--sky); box-shadow: inset 0 0 0 1.5px var(--sky); }
+.ut-flow__step--core { background: linear-gradient(140deg, #693296, #3d4fb3 45%, #226BC4); box-shadow: 0 24px 50px -28px rgba(105, 50, 150, .8); }
+.ut-flow__step--core .ut-flow__n { color: #fff; box-shadow: inset 0 0 0 1.5px #fff; }
+
+/* other critical infrastructure: light cards washed with a slice of the brand gradient */
+.ut-inf-list { list-style: none; margin: clamp(3rem, 6vw, 4.5rem) 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1rem, 2vw, 1.5rem); }
+.ut-inf { padding: clamp(1.5rem, 3vw, 2.25rem); border-radius: 20px; background: #fff; box-shadow: inset 0 0 0 1px rgba(11, 26, 43, .08), 0 24px 48px -36px rgba(11, 26, 43, .4); }
+.ut-inf:nth-child(1) { background: linear-gradient(160deg, rgba(105, 50, 150, .12), #fff 55%); }
+.ut-inf:nth-child(2) { background: linear-gradient(160deg, rgba(34, 107, 196, .12), #fff 55%); }
+.ut-inf:nth-child(3) { background: linear-gradient(160deg, rgba(53, 147, 208, .14), #fff 55%); }
+.ut-inf__h { font-size: clamp(1.375rem, 2vw, 1.625rem); font-weight: 800; line-height: 1.2; letter-spacing: -.02em; color: var(--d-ink); }
+.ut-inf__scope { display: block; margin-top: .4rem; font-size: .9375rem; font-weight: 500; color: var(--blue); letter-spacing: 0; }
+.ut-inf__p { margin-top: 1rem; font-size: 1.0625rem; line-height: 1.65; color: var(--d-ink-2); }
+
+@media (max-width: 1100px) {
+  .ut-ch-list, .ut-out-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 900px) {
+  .ut-intro, .ut-panel, .ut-storm__top, .ut-storm__grid, .ut-inf-list { grid-template-columns: 1fr; }
+  .ut-sys { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .ut-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 520px) { .ut-ch-list, .ut-out-list { grid-template-columns: 1fr; } }
+.ut-decisions .gv-h2 { max-width: 30ch; }
+/* utilities header: systems stack removed (client request, 2026-11-10), intro back to one column */
+.ut-intro { grid-template-columns: minmax(0, 1fr); max-width: 52rem; }
+
+/* crisis line: drawn in by a left-to-right reveal of the whole line (the dash method left a stray dot) */
+@media (prefers-reduced-motion: no-preference) {
+  .js .gv-imp--storm .gv-imp__line { clip-path: inset(-10px 100% -10px 0); transition: clip-path 1.4s var(--ease-out) .4s; }
+  .js .gv-imp--storm.is-in .gv-imp__line { clip-path: inset(-10px 0 -10px 0); }
+}
+
+/* utilities rhythm, reworked around a white capabilities section (client request, 2026-11-10):
+   decisions (soft grey) → capabilities (white) → outcomes (dark) → why (gradient) → storm (dark) → infra (grey) → FAQ (dark) */
+.ut-capabilities { background: #fff; }
+.ut-capabilities .gv-cap { background: var(--day); box-shadow: inset 0 0 0 1px rgba(11, 26, 43, .06); }
+.ut-outcomes .gv-h2 { color: var(--ink); }
+.ut-out { background: var(--night-2); box-shadow: inset 0 0 0 1px var(--rule); }
+.ut-out__pre { color: var(--ink-2); }
+.ut-out__v { color: var(--sky); }
+.ut-out__post { color: var(--ink); }
+
+/* utilities capabilities: the platform "Architecture and Trust" tile design (client request, 2026-11-10):
+   white tiles with large rounded corners on the soft grey sheet, no outline, 72px gradient line icons,
+   the same type sizes, and the same hover (3px lift + soft brand glow). Decisions above turns white
+   so the two sections stay distinct. */
+.ut-decisions { background: #fff; }
+.ut-capabilities { background: var(--day); }
+.ut-capabilities .gv-caps { gap: clamp(1rem, 1.8vw, 1.5rem); }
+.ut-capabilities .gv-cap { padding: clamp(1.75rem, 2.6vw, 2.5rem); border-radius: 28px; background: #fff; box-shadow: none; display: grid; align-content: start; gap: 1rem; }
+.ut-capabilities .gv-cap__ico { margin-bottom: .5rem; }
+.ut-capabilities .gv-cap__h { margin-top: 0; font-size: clamp(1.375rem, 1.9vw, 1.75rem); letter-spacing: -.03em; }
+.ut-capabilities .gv-cap__p { margin-top: 0; font-size: 1.0625rem; max-width: 52ch; }
+@media (hover: hover) and (pointer: fine) {
+  .ut-capabilities .gv-cap:hover {
+    box-shadow:
+      -18px 12px 48px -18px rgba(105, 50, 150, .28),
+      0 20px 48px -22px rgba(34, 107, 196, .32),
+      18px 14px 52px -18px rgba(71, 174, 227, .3);
+  }
+}
+.ut-decisions .df-tab:not([aria-selected="true"]) { background: var(--day); }
+
+/* utilities outcomes: the homepage ROI design (client request, 2026-11-10): brand-gradient field,
+   translucent dark cards, thin rolling numbers that land one card at a time.
+   Four cards, so the numbers are a step smaller; the lead-in sits above each number. */
+.ut-outcomes .gv-h2 { color: #fff; }
+.ut-figures { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.ut-figures .figure__n { font-size: clamp(2.75rem, 4.4vw, 4.5rem); white-space: normal; flex-wrap: wrap; }
+.ut-figures dt { gap: 1rem; }
+.ut-fig__pre { font-size: 1rem; line-height: 1.45; color: rgba(255, 255, 255, .85); max-width: 24ch; }
+.ut-figures .figure dd { margin-top: 1.25rem; }
+.ut-figures .figure dd b { margin-bottom: 0; font-size: 1.125rem; }
+@media (max-width: 1100px) { .ut-figures { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .ut-figures { grid-template-columns: 1fr; } }
+
+/* why utilities choose 4Cast moves to a light sheet now that the outcomes carry the gradient */
+.ut-why .gv-kicker { color: var(--blue); }
+.ut-why .gv-h2 .t-thin { color: var(--d-ink-2); }
+.ut-why .gv-h2 .t-heavy { color: var(--d-ink); }
+.ut-why__p { color: var(--d-ink-2); }
+/* keep the space before a word like "faster" inside a rolling figure */
+.ut-figures .fx { white-space: pre; }
+.ut-figures .fx--word { flex-basis: 100%; }
+
+/* utilities: FAQ removed (client request, 2026-11-10); the closing panel stands on its own dark sheet */
+.ut-closing .gv-close { margin-top: 0; }
+
+/* decisions on the brand gradient (client request, 2026-11-10): sets it apart from the grey capabilities.
+   Tabs become frosted glass, the selected tab is white; all text turns white */
+.ut-decisions { background: var(--grad); }
+.ut-decisions .gv-kicker { color: rgba(255, 255, 255, .85); }
+.ut-decisions .gv-h2 .t-thin { color: rgba(255, 255, 255, .82); }
+.ut-decisions .gv-h2 .t-heavy { color: #fff; }
+.ut-decisions .df-tab, .ut-decisions .df-tab:not([aria-selected="true"]) { background: rgba(255, 255, 255, .1); color: rgba(255, 255, 255, .85); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .28); }
+.ut-decisions .df-tab__n { color: rgba(255, 255, 255, .7); }
+@media (hover: hover) { .ut-decisions .df-tab:hover { color: #fff; background: rgba(255, 255, 255, .16); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .5); } }
+.ut-decisions .df-tab[aria-selected="true"] { background: #fff; color: var(--d-ink); box-shadow: 0 18px 36px -22px rgba(11, 26, 43, .6); }
+.ut-decisions .df-tab[aria-selected="true"] .df-tab__n { color: var(--blue); }
+.ut-decisions .df-tab:focus-visible { outline-color: #fff; }
+.ut-decisions .ut-panel__q { color: #fff; }
+.ut-decisions .ut-panel__a { color: rgba(255, 255, 255, .9); }
+.ut-decisions .ut-tags li { color: #fff; background: rgba(255, 255, 255, .12); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .4); }
+.ut-decisions .df-panel:focus-visible { outline-color: #fff; }
+
+/* outcome cards: balance the short lines so none ends with one or two lonely words (client request, 2026-11-10) */
+.ut-fig__pre, .ut-figures .figure dd b { text-wrap: balance; }
+
+/* why utilities choose 4Cast joins the closing on one dark sheet (client request, 2026-11-10) */
+.ut-closing.ut-why .gv-kicker { color: var(--sky); }
+.ut-closing.ut-why .gv-h2 .t-thin { color: rgba(232, 238, 244, .72); }
+.ut-closing.ut-why .gv-h2 .t-heavy { color: #fff; }
+.ut-closing.ut-why .ut-why__p { color: var(--ink-2); }
+.ut-closing .gv-close { margin-top: clamp(5rem, 10vw, 8rem); }
