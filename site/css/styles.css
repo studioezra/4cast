@@ -1947,3 +1947,9 @@ a.btn:not([href]) { cursor: pointer; }
 .nf-links { list-style: none; display: flex; flex-wrap: wrap; gap: .6rem; margin: 1.5rem 0 0; padding: 0; }
 .nf-links .btn--ghost { color: #fff; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .45); }
 @media (hover: hover) and (pointer: fine) { .nf-links .btn--ghost:hover { background: rgba(255, 255, 255, .12); } }
+
+/* Government: the closing card now opens its section (the FAQ is parked in parked/government-faq.html) */
+.gv-closing .gv-close { margin-top: 0; }
+
+/* About bio popup: the LinkedIn button sits right under the role */
+.ab-bio__role + .ab-bio__li { margin-top: 1rem; }
