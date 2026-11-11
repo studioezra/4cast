@@ -1,0 +1,118 @@
+/* 4Cast accessibility toolbar (2026-11-10): the floating button, its panel, and what each setting does to the site */
+
+/* ---------- floating button, bottom left ---------- */
+.a11y { position: fixed; left: clamp(12px, 2vw, 24px); bottom: clamp(12px, 2vw, 24px); z-index: 35; font-family: Poppins, system-ui, sans-serif; }
+.a11y__fab {
+  position: relative; display: grid; place-items: center; width: 56px; height: 56px; padding: 0; border: 0; border-radius: 50%; cursor: pointer;
+  color: #fff; background: linear-gradient(140deg, #693296, #3d4fb3 45%, #226BC4);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, .9), 0 14px 30px -10px rgba(4, 10, 18, .7);
+  transition: transform .25s cubic-bezier(.23, 1, .32, 1), box-shadow .25s ease;
+}
+.a11y__fab svg { width: 30px; height: 30px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.a11y__fab svg circle { fill: currentColor; stroke: none; }
+@media (hover: hover) and (pointer: fine) { .a11y__fab:hover { transform: scale(1.06); } }
+.a11y__fab:active { transform: scale(.96); }
+.a11y__fab:focus-visible { outline: 3px solid #ffbf00; outline-offset: 4px; }
+/* a small dot shows that some setting is on */
+.a11y__fab.is-on::after { content: ""; position: absolute; right: 1px; top: 1px; width: 14px; height: 14px; border-radius: 50%; background: #47AEE3; box-shadow: 0 0 0 2px #fff; }
+
+/* ---------- panel ---------- */
+.a11y__panel {
+  position: absolute; left: 0; bottom: calc(100% + 12px); width: min(340px, calc(100vw - 24px)); max-height: calc(100vh - 110px); overflow: auto;
+  padding: 1.1rem; border-radius: 22px; background: #fff; color: #0b1a2b;
+  box-shadow: 0 0 0 1px rgba(11, 26, 43, .08), 0 30px 70px -20px rgba(4, 10, 18, .6);
+  transform-origin: bottom left; animation: a11y-in .22s cubic-bezier(.23, 1, .32, 1);
+}
+.a11y__panel[hidden] { display: none; }
+@keyframes a11y-in { from { opacity: 0; transform: translateY(6px) scale(.97); } }
+.a11y__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: .9rem; }
+.a11y__title { font-size: 1.125rem; font-weight: 800; letter-spacing: -.01em; margin: 0; color: #0b1a2b; }
+.a11y__x { display: grid; place-items: center; width: 44px; height: 44px; margin: -6px -6px -6px 0; border: 0; border-radius: 50%; background: transparent; color: #0b1a2b; cursor: pointer; }
+.a11y__x:hover { background: #eef2f6; }
+.a11y__x svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+
+.a11y__size { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .55rem .55rem .55rem 1rem; border-radius: 16px; background: #f2f5f8; }
+.a11y__size-l { font-size: .9375rem; font-weight: 600; }
+.a11y__stepper { display: flex; align-items: center; gap: .35rem; }
+.a11y__step { width: 44px; height: 44px; border: 0; border-radius: 12px; background: #fff; color: #0b1a2b; font: 700 1.0625rem Poppins, system-ui, sans-serif; cursor: pointer; box-shadow: 0 0 0 1px rgba(11, 26, 43, .1); }
+.a11y__step sup { font-size: .7em; }
+.a11y__step:disabled { opacity: .35; cursor: default; }
+.a11y__lvl { min-width: 4.2em; text-align: center; font-size: .875rem; font-weight: 600; color: #3a4b5e; }
+
+.a11y__grid { margin-top: .6rem; display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
+.a11y__t {
+  display: grid; justify-items: start; gap: .5rem; min-height: 88px; padding: .85rem .9rem; border: 0; border-radius: 16px; text-align: left; cursor: pointer;
+  background: #f2f5f8; color: #0b1a2b; font: 600 .9375rem/1.25 Poppins, system-ui, sans-serif;
+  transition: background-color .2s ease, color .2s ease, box-shadow .2s ease;
+}
+.a11y__t svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.a11y__t svg .f { fill: currentColor; stroke: none; }
+@media (hover: hover) and (pointer: fine) { .a11y__t:hover { box-shadow: inset 0 0 0 1.5px #226BC4; } }
+.a11y__t[aria-pressed="true"] { background: linear-gradient(140deg, #693296, #3d4fb3 45%, #226BC4); color: #fff; }
+.a11y__reset { background: #fff; box-shadow: inset 0 0 0 1px rgba(11, 26, 43, .15); }
+.a11y button:focus-visible { outline: 3px solid #ffbf00; outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { .a11y__panel { animation: none; } .a11y__fab, .a11y__t { transition: none; } }
+@media (max-width: 600px) { .a11y__fab { width: 52px; height: 52px; } }
+
+/* ==========================================================================
+   SETTINGS
+   ========================================================================== */
+/* text size: the site sets type in rem, so scaling the root scales the text */
+html.a11y-size-1 { font-size: 115%; }
+html.a11y-size-2 { font-size: 130%; }
+
+/* readable font: a plain system face, no ultra-thin weights, normal spacing */
+html.a11y-font body, html.a11y-font body *:not(svg):not(svg *) { font-family: Verdana, "Segoe UI", Arial, sans-serif !important; letter-spacing: normal !important; }
+html.a11y-font .t-thin, html.a11y-font [class*="__n"], html.a11y-font .ab-yr, html.a11y-font .fd, html.a11y-font .fx { font-weight: 400 !important; }
+html.a11y-font body { line-height: 1.6; }
+
+/* stop animations: every animation and transition jumps to its end, videos pause (see a11y.js) */
+html.a11y-still *, html.a11y-still *::before, html.a11y-still *::after {
+  animation-duration: 0s !important; animation-delay: 0s !important; animation-iteration-count: 1 !important;
+  transition-duration: 0s !important; transition-delay: 0s !important; scroll-behavior: auto !important;
+}
+html.a11y-still .rv { opacity: 1 !important; transform: none !important; filter: none !important; }
+
+/* highlight links: every link and button underlined and outlined */
+html.a11y-links a:not(.a11y *), html.a11y-links button:not(.a11y *), html.a11y-links [role="tab"] {
+  text-decoration: underline !important; text-underline-offset: .2em; outline: 2px dashed currentColor !important; outline-offset: 3px !important;
+}
+
+/* strong focus: a thick amber ring with a dark halo, visible on light, dark and gradient sections */
+html.a11y-focus :focus-visible { outline: 4px solid #ffbf00 !important; outline-offset: 3px !important; box-shadow: 0 0 0 8px #08111c !important; border-radius: 6px; }
+
+/* high contrast: black page, white text, yellow links; photos, video and icons are left as they are */
+html.a11y-contrast body, html.a11y-contrast body *:not(svg):not(svg *):not(img):not(video):not(iframe):not(.a11y):not(.a11y *) {
+  background-color: #000 !important; background-image: none !important; color: #fff !important;
+  -webkit-text-fill-color: #fff !important; text-shadow: none !important; box-shadow: none !important; border-color: #fff !important;
+}
+html.a11y-contrast body *:not(.a11y *)::before, html.a11y-contrast body *:not(.a11y *)::after { background-image: none !important; filter: none !important; }
+html.a11y-contrast a:not(.a11y *), html.a11y-contrast a:not(.a11y *) * { color: #ffeb3b !important; -webkit-text-fill-color: #ffeb3b !important; }
+html.a11y-contrast button:not(.a11y *), html.a11y-contrast [role="tab"] { outline: 1px solid #fff !important; }
+html.a11y-contrast [aria-selected="true"], html.a11y-contrast [aria-current="page"] { color: #ffeb3b !important; -webkit-text-fill-color: #ffeb3b !important; text-decoration: underline !important; }
+html.a11y-contrast .sheet, html.a11y-contrast section, html.a11y-contrast .pf-hero { border-top: 1px solid #fff !important; }
+html.a11y-contrast .pf-hero__img, html.a11y-contrast .close__aurora, html.a11y-contrast .hero__video { display: none !important; }
+html.a11y-contrast svg:not(.a11y svg) { stroke: #fff; }
+html.a11y-contrast .nav__logo, html.a11y-contrast img[src*="4cast.svg"] { filter: brightness(0) invert(1) !important; }
+
+/* the toolbar keeps its own colours in every mode (high contrast's white text fill would otherwise leak in) */
+.a11y, .a11y * { -webkit-text-fill-color: currentColor; }
+html.a11y-contrast .a11y__panel { box-shadow: 0 0 0 3px #ffeb3b; }
+
+/* button and panel on the right side (client request, 2026-11-10) */
+.a11y { left: auto; right: clamp(12px, 2vw, 24px); }
+.a11y__panel { left: auto; right: 0; transform-origin: bottom right; }
+
+/* cleaner black-and-white button: black disc, the standard accessibility figure in a thin white ring (client request, 2026-11-10) */
+.a11y__fab { background: #000; color: #fff; box-shadow: 0 0 0 2px #fff, 0 10px 26px -8px rgba(0, 0, 0, .55); }
+.a11y__fab svg { width: 38px; height: 38px; stroke-width: 1.6; }
+.a11y__fab svg .ring { fill: none; stroke: currentColor; stroke-width: 1.2; }
+.a11y__fab svg .head { fill: currentColor; stroke: none; }
+@media (hover: hover) and (pointer: fine) { .a11y__fab:hover { background: #1a1a1a; } }
+.a11y__fab.is-on::after { background: #fff; box-shadow: 0 0 0 2px #000; }
+
+/* option A (client request, 2026-11-10): white disc, bold black figure, soft shadow */
+.a11y__fab { background: #fff; color: #000; box-shadow: 0 0 0 1px rgba(0, 0, 0, .12), 0 10px 24px -8px rgba(0, 0, 0, .55); }
+.a11y__fab svg { width: 30px; height: 30px; stroke-width: 2.4; }
+@media (hover: hover) and (pointer: fine) { .a11y__fab:hover { background: #fff; } }
+.a11y__fab.is-on::after { background: #000; box-shadow: 0 0 0 2px #fff; }

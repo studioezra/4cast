@@ -3,6 +3,8 @@
   const doc = document.documentElement;
   doc.classList.add('js');
   const RM = window.matchMedia('(prefers-reduced-motion: reduce)');
+  // pause/play buttons (WCAG 2.2.2): the label says what the next click does
+  const setMo = (b, paused, what) => { b.classList.toggle('is-paused', paused); b.setAttribute('aria-label', (paused ? 'Play ' : 'Pause ') + what); };
   const NS = 'http://www.w3.org/2000/svg';
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -90,10 +92,24 @@
   });
   copy.style.setProperty('--words', wi);
   copy.classList.add('is-split');
-  const playHero = () => { if (RM.matches || !heroVisible) return; const p = video.play(); if (p) p.catch(() => {}); };
+  let heroHeld = false;
+  const playHero = () => { if (RM.matches || !heroVisible || heroHeld) return; const p = video.play(); if (p) p.catch(() => {}); };
   video.addEventListener('playing', () => video.classList.add('is-playing'), { once: true });
   if (video.readyState >= 3) playHero(); else video.addEventListener('canplay', playHero, { once: true });
   playHero();
+  const heroBtn = $('.hero__pause');
+  if (heroBtn) heroBtn.addEventListener('click', () => {
+    heroHeld = !heroHeld; setMo(heroBtn, heroHeld, 'background video');
+    $('.hero').classList.toggle('is-still', heroHeld);
+    if (heroHeld) video.pause(); else playHero();
+  });
+
+  /* logo strip */
+  const railBtn = $('.rail__pause');
+  if (railBtn) railBtn.addEventListener('click', () => {
+    const on = !railBtn.classList.contains('is-paused'); setMo(railBtn, on, 'logo strip');
+    $('#logo-rail').classList.toggle('is-paused', on);
+  });
 
   /* ---------- bearings (five decisions) ---------- */
   const D = [
@@ -141,20 +157,22 @@
   }
   // autoplay: each decision holds for 5s while its line grows, then the next one comes in
   const dx = $('#dx'), dxFill = $('#dx-fill'), dxGrid = $('.bearings__grid--dx');
-  let held = false, inView = false;
+  let held = false, inView = false, dxHeld = false;
   function restartTimer() {
     dx.classList.remove('is-playing');
     void dxFill.offsetWidth; // restart the CSS animation from zero
     if (!RM.matches) dx.classList.add('is-playing');
     syncPause();
   }
-  function syncPause() { dx.classList.toggle('is-paused', held || !inView || document.hidden); }
-  dxFill.addEventListener('animationend', () => { if (!held && inView) select((cur + 1) % tabs.length); });
+  function syncPause() { dx.classList.toggle('is-paused', held || dxHeld || !inView || document.hidden); }
+  dxFill.addEventListener('animationend', () => { if (!held && !dxHeld && inView) select((cur + 1) % tabs.length); });
   dxGrid.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') { held = true; syncPause(); } });
   dxGrid.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') { held = false; restartTimer(); } });
   dxGrid.addEventListener('focusin', () => { held = true; syncPause(); });
   dxGrid.addEventListener('focusout', e => { if (!dxGrid.contains(e.relatedTarget)) { held = false; restartTimer(); } });
   document.addEventListener('visibilitychange', syncPause);
+  const dxBtn = $('.dx__pause');
+  if (dxBtn) dxBtn.addEventListener('click', () => { dxHeld = !dxHeld; setMo(dxBtn, dxHeld, 'decision rotation'); syncPause(); });
   new IntersectionObserver(es => es.forEach(e => {
     const was = inView; inView = e.isIntersecting;
     if (inView && !was) restartTimer(); else syncPause();
@@ -265,15 +283,16 @@
   /* sector panels autoplay: advance every 4.5s while in view; pause while the visitor is hovering or focused inside */
   const panelsEl = $('#panels');
   if (panelsEl && !RM.matches) {
-    let pHeld = false, pInView = false, pTimer;
+    let pHeld = false, pInView = false, pTimer, pUser = false;
     const desktop = matchMedia('(min-width: 901px)');
     const nextPanel = () => {
+      if (RM.matches) return; // "Stop animations" switched on in the accessibility toolbar
       const cur = panels.findIndex(x => x.classList.contains('is-open'));
       openPanel(panels[(cur + 1) % panels.length]);
     };
     const schedule = () => {
       clearInterval(pTimer);
-      if (pInView && !pHeld && desktop.matches && !document.hidden) pTimer = setInterval(nextPanel, 4500);
+      if (pInView && !pHeld && !pUser && desktop.matches && !document.hidden) pTimer = setInterval(nextPanel, 4500);
     };
     panelsEl.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') { pHeld = true; schedule(); } });
     panelsEl.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') { pHeld = false; schedule(); } });
@@ -282,6 +301,8 @@
     panelsEl.addEventListener('click', schedule); // a click restarts the 4.5s before moving on
     document.addEventListener('visibilitychange', schedule);
     desktop.addEventListener('change', schedule);
+    const pBtn = $('.panels__pause');
+    if (pBtn) pBtn.addEventListener('click', () => { pUser = !pUser; setMo(pBtn, pUser, 'sector rotation'); schedule(); });
     new IntersectionObserver(es => es.forEach(e => { pInView = e.isIntersecting; schedule(); }), { threshold: .4 }).observe(panelsEl);
   }
 
@@ -291,7 +312,7 @@
     ['#platform .h2', '#platform .lede'], ['.steps > li'], ['.motto'],
     ['#why .h2'], ['.superiority'],
     ['#serve .h2', '#serve .arch'], ['.panels'], ['.also'],
-    ['.storm-none']
+    ['.storm-band .t-thin', '.storm-band .t-heavy']
   ];
   const rvIO = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); rvIO.unobserve(e.target); } }), { rootMargin: '0px 0px -12% 0px' });
   groups.forEach(sels => {

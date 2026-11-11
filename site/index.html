@@ -1,15 +1,52 @@
 <!doctype html>
 <html lang="en">
 <head>
+<!-- cookie consent: sets the Google consent defaults and loads gtag.js only after the visitor accepts analytics -->
+<script src="js/consent.js?v=1"></script>
+<!-- Google tag (gtag.js) -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XC0TZMRKWG');
+</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>4Cast · Decision Intelligence</title>
-<meta name="description" content="4Cast is a Decision Intelligence platform that gives you options and shows the impact of each one before you commit.">
+<title>4Cast | AI-Powered Decision Intelligence Platform</title>
+<meta name="description" content="4Cast is an AI-powered Decision Intelligence platform for defense, government and utilities. See your options and the impact of each one before you commit.">
 <meta name="theme-color" content="#08111c">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<!-- seo -->
+<link rel="canonical" href="https://4cast-ai.com/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" href="assets/icons/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="4Cast">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://4cast-ai.com/">
+<meta property="og:title" content="4Cast | AI-Powered Decision Intelligence Platform">
+<meta property="og:description" content="4Cast is an AI-powered Decision Intelligence platform for defense, government and utilities. See your options and the impact of each one before you commit.">
+<meta property="og:image" content="https://4cast-ai.com/assets/brand/4cast-share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="4Cast logo over a lighthouse at night">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="4Cast | AI-Powered Decision Intelligence Platform">
+<meta name="twitter:description" content="4Cast is an AI-powered Decision Intelligence platform for defense, government and utilities. See your options and the impact of each one before you commit.">
+<meta name="twitter:image" content="https://4cast-ai.com/assets/brand/4cast-share.jpg">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://4cast-ai.com/#org","name":"4Cast","url":"https://4cast-ai.com/","logo":"https://4cast-ai.com/assets/icons/icon-512.png","email":"4cast.info@4castai.com","description":"AI-powered Decision Intelligence platform that helps leaders make smarter, faster, and more impactful decisions.","foundingDate":"2018","parentOrganization":{"@type":"Organization","name":"Malam Team"},"sameAs":["https://www.linkedin.com/company/4cast-ai","https://www.youtube.com/@4Cast-ai"],"address":[{"@type":"PostalAddress","streetAddress":"53 Avshalom Gissin Street","addressLocality":"Petah Tikva","postalCode":"4922450","addressCountry":"IL"},{"@type":"PostalAddress","streetAddress":"31 Hudson Yards","addressLocality":"New York","addressRegion":"NY","postalCode":"10001","addressCountry":"US"}],"contactPoint":[{"@type":"ContactPoint","contactType":"sales","telephone":"+972-3-978-7659","email":"4cast.info@4castai.com","areaServed":"IL"},{"@type":"ContactPoint","contactType":"sales","telephone":"+1-917-352-1251","areaServed":"US"}]},{"@type":"WebSite","@id":"https://4cast-ai.com/#site","url":"https://4cast-ai.com/","name":"4Cast","publisher":{"@id":"https://4cast-ai.com/#org"}},{"@type":"WebPage","@id":"https://4cast-ai.com/#page","url":"https://4cast-ai.com/","name":"4Cast | AI-Powered Decision Intelligence Platform","description":"4Cast is an AI-powered Decision Intelligence platform for defense, government and utilities. See your options and the impact of each one before you commit.","isPartOf":{"@type":"WebSite","@id":"https://4cast-ai.com/#site","url":"https://4cast-ai.com/","name":"4Cast"},"about":{"@id":"https://4cast-ai.com/#org"},"primaryImageOfPage":"https://4cast-ai.com/assets/brand/4cast-share.jpg","inLanguage":"en"}]}</script>
+<link rel="preload" as="image" href="assets/video/hero-poster.jpg" fetchpriority="high">
+<!-- /seo -->
+<link rel="preload" href="assets/fonts/poppins-200-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/poppins-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/poppins-800-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/fonts.css?v=1">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/a11y.css?v=5">
+<link rel="stylesheet" href="css/consent.css?v=2">
+<script src="js/a11y.js?v=3"></script>
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
@@ -37,7 +74,7 @@
           <a href="government.html"><b>Government &amp; Emergency Management</b><span>Decision Intelligence for Government Missions in Planning and Response</span></a>
         </div>
       </li>
-      <li><a href="#about">About Us</a></li>
+      <li><a href="about.html">About Us</a></li>
       <li><a href="contact.html">Contact Us</a></li>
     </ul>
   </nav>
@@ -49,7 +86,7 @@
 <!-- HERO -->
 <section class="hero" aria-labelledby="hero-title">
   <video class="hero__video" muted loop playsinline preload="auto" poster="assets/video/hero-poster.jpg" aria-hidden="true" tabindex="-1">
-    <source src="assets/video/hero-lighthouse.mp4" type="video/mp4">
+    <source src="assets/video/hero-lighthouse.mp4?v=c1" type="video/mp4">
   </video>
   <div class="hero__copy">
     <h1 id="hero-title" class="hero__title">
@@ -59,11 +96,13 @@
     <p class="hero__sub">4Cast is a Decision Intelligence platform that gives you options and shows the impact of each one before you commit.</p>
     <p class="hero__cta"><a class="btn btn--light" href="platform.html">See 4Cast in action</a></p>
   </div>
+  <button type="button" class="mo-btn hero__pause" aria-label="Pause background video"><svg class="mo-btn__pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6.5v11M15 6.5v11"/></svg><svg class="mo-btn__play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 6.2v11.6L18 12z"/></svg></button>
 </section>
 
 <!-- TRUST -->
 <section class="register" aria-labelledby="register-title">
   <h2 id="register-title" class="register__title">Trusted by Industry Leaders Around the World</h2>
+  <div class="rail-wrap">
   <div class="rail" id="logo-rail">
     <div class="rail__belt">
       <ul class="rail__set">
@@ -148,6 +187,8 @@
       </div>
     </div>
   </div>
+  <button type="button" class="mo-btn rail__pause" aria-label="Pause logo strip"><svg class="mo-btn__pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6.5v11M15 6.5v11"/></svg><svg class="mo-btn__play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 6.2v11.6L18 12z"/></svg></button>
+  </div>
 </section>
 
 <!-- PROBLEM · day -->
@@ -164,6 +205,7 @@
     </div>
 
     <div class="console" id="console">
+      <button type="button" class="mo-btn dx__pause" aria-label="Pause decision rotation"><svg class="mo-btn__pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6.5v11M15 6.5v11"/></svg><svg class="mo-btn__play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 6.2v11.6L18 12z"/></svg></button>
       <span class="dx__glow" id="dx-glow" aria-hidden="true"></span>
       <h3 class="console__title"><span class="t-thin">Five decisions</span> <span class="t-heavy">that change outcomes</span></h3>
       <div class="bearings__grid bearings__grid--dx">
@@ -220,7 +262,7 @@
 
     <div class="motto">
       <p><span class="m1">Compare Options.</span> <span class="m2">Understand Impact.</span> <span class="m3">Adapt with Confidence.</span></p>
-      <span class="link">4Cast Platform <svg viewBox="0 0 16 10" aria-hidden="true"><path d="M1 5h13M10 1l4 4-4 4"/></svg></span>
+      <a class="link" href="platform.html">4Cast Platform <svg viewBox="0 0 16 10" aria-hidden="true"><path d="M1 5h13M10 1l4 4-4 4"/></svg></a>
     </div>
   </div>
 </section>
@@ -228,7 +270,7 @@
 <!-- ROI · brand gradient field -->
 <section class="sheet sheet--field" id="why" aria-labelledby="why-title">
   <div class="wrap">
-    <h2 id="why-title" class="h2"><span class="sr">Why 4Cast Works: </span><span class="t-thin">The ROI of</span> <span class="t-heavy">Decision Clarity</span></h2>
+    <h2 id="why-title" class="h2"><span class="sr">Why 4Cast Works: </span><span class="t-thin">The ROI of</span> <span class="t-heavy">Decision Clarity.</span></h2>
     <dl class="figures">
       <div class="figure">
         <dt><span class="figure__n">30-60%</span><span class="tag tag--on-field">Target</span></dt>
@@ -254,6 +296,7 @@
     <h2 id="serve-title" class="h2"><span class="sr">Who We Serve: </span><span class="t-thin">One decision layer.</span> <span class="t-heavy">Value in every sector.</span></h2>
     <p class="arch">Same architecture · same data · different objective</p>
 
+    <button type="button" class="mo-btn panels__pause" aria-label="Pause sector rotation"><svg class="mo-btn__pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6.5v11M15 6.5v11"/></svg><svg class="mo-btn__play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 6.2v11.6L18 12z"/></svg></button>
     <ul class="panels" id="panels">
       <li class="panel is-open" id="utilities">
         <img class="panel__img" src="assets/sectors/utilities.jpg" alt="" loading="lazy" decoding="async"><img class="panel__img panel__img--soft" src="assets/sectors/utilities.jpg" alt="" loading="lazy" decoding="async">
@@ -310,9 +353,11 @@
   <div class="close__copy">
     <h2 id="close-title" class="h2 h2--xl"><span class="t-thin">Every Decision Has a Cost.</span> <span class="t-heavy">We Make it Visible Before You Spend It.</span></h2>
     <p class="lede">Data doesn't make decisions. People do. We make them better.</p>
-    <p><a class="btn btn--light">Request a Demo</a></p>
-    <p class="storm">The storm is coming. Together we make better decisions.</p>
   </div>
+</section>
+
+<section class="storm-band" aria-label="Closing line">
+  <p class="storm"><span class="t-thin">The storm is coming.</span> <span class="t-heavy">Together we make better decisions.</span></p>
 </section>
 
 
@@ -320,18 +365,19 @@
 
 <footer class="foot">
   <div class="foot__brand">
-    <img class="nav__logo" src="assets/brand/4cast.svg" width="480" height="138" alt="4Cast">
+    <a class="foot__home" href="index.html" aria-label="4Cast home"><img class="nav__logo" src="assets/brand/4cast.svg" width="480" height="138" alt=""></a>
   </div>
   <div class="foot__cols" aria-label="Site map">
     <div><h4>Platform</h4><a href="platform.html">4Cast Platform</a></div>
     <div><h4>Industries</h4><a href="defense.html">Defense &amp; National Security</a><a href="utilities.html">Utilities &amp; Critical Infrastructure</a><a href="government.html">Government &amp; Emergency Management</a></div>
-    <div><h4>Company</h4><span>About Us</span><a href="contact.html">Contact Us</a></div>
+    <div><h4>Company</h4><a href="about.html">About Us</a><a href="contact.html">Contact Us</a></div>
   </div>
   <div class="foot__legal">
     <span>© <span id="yr">2026</span> 4Cast</span>
     <a href="https://app.websitepolicies.com/policies/view/fl8rn6tn" target="_blank" rel="noopener">Terms and conditions</a>
     <a href="https://app.websitepolicies.com/policies/view/ri08ru6c" target="_blank" rel="noopener">Cookie policy</a>
     <a href="https://app.websitepolicies.com/policies/view/r0m8o4ew" target="_blank" rel="noopener">Privacy policy</a>
+    <button type="button" class="foot__ck" data-ck-settings>Cookie settings</button>
     <a href="assets/legal/4cast-privacy-policy-he.pdf" lang="he" dir="rtl" data-pdf-dialog>מדיניות פרטיות</a>
   </div>
 </footer>
@@ -347,6 +393,6 @@
   <iframe class="pdf-dialog__frame" id="pdf-dialog-frame" title="מדיניות פרטיות" src="about:blank"></iframe>
 </dialog>
 
-<script src="main.js" defer></script>
+<script src="js/main.js?v=4" defer></script>
 </body>
 </html>

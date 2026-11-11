@@ -54,11 +54,23 @@
   if (!RM.matches) {
     const vIO = new IntersectionObserver(es => es.forEach(e => {
       const v = e.target;
-      if (e.isIntersecting) { if (!v.dataset.done) { const p = v.play(); if (p) p.catch(() => {}); } } else v.pause();
+      if (e.isIntersecting) { if (!v.dataset.done && !v.dataset.held) { const p = v.play(); if (p) p.catch(() => {}); } } else v.pause();
     }), { threshold: .25 });
     vids.forEach(v => vIO.observe(v));
   }
   // plays once, then pauses on its last frame with a "Play again" button over it
+  // pause/play button on each video (WCAG 2.2.2); it hides while "Play again" is showing
+  vids.forEach(v => {
+    const pb = v.parentElement.querySelector('.cap__pause');
+    if (!pb) return;
+    const set = held => { pb.classList.toggle('is-paused', held); pb.setAttribute('aria-label', (held ? 'Play' : 'Pause') + ' video'); };
+    pb.addEventListener('click', () => {
+      if (v.dataset.held) { delete v.dataset.held; set(false); const p = v.play(); if (p) p.catch(() => {}); }
+      else { v.dataset.held = '1'; set(true); v.pause(); }
+    });
+    v.addEventListener('ended', () => { pb.hidden = true; });
+    v.addEventListener('play', () => { pb.hidden = false; if (v.dataset.held) { delete v.dataset.held; set(false); } });
+  });
   vids.forEach(v => {
     const btn = v.parentElement.querySelector('.cap__replay');
     if (!btn) return;

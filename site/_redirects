@@ -1,0 +1,14 @@
+# Old 4Cast site addresses -> new pages (permanent redirects, so search rankings carry over)
+# Used by Netlify and Cloudflare Pages. Both forms, with and without the closing slash, are listed.
+/about-us/  /about.html  301
+/about-us   /about.html  301
+/4cast-decision-intelligence-platform/  /platform.html  301
+/4cast-decision-intelligence-platform   /platform.html  301
+/defense-national-security/  /defense.html  301
+/defense-national-security   /defense.html  301
+/critical-infrastructure-enterprise/  /utilities.html  301
+/critical-infrastructure-enterprise   /utilities.html  301
+/government-agencies/  /government.html  301
+/government-agencies   /government.html  301
+/contact-us/  /contact.html  301
+/contact-us   /contact.html  301

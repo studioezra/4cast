@@ -114,7 +114,7 @@ h1, h2, h3, h4, p { margin: 0; }
 .hero {
   position: relative; min-height: 100svh; min-height: max(100svh, 640px);
   display: flex; align-items: center; isolation: isolate; overflow: hidden;
-  background: var(--sea-0) url("assets/video/hero-poster.jpg") 30% 50% / cover no-repeat;
+  background: var(--sea-0) url("../assets/video/hero-poster.jpg") 30% 50% / cover no-repeat;
 }
 .hero__video {
   position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%;
@@ -401,7 +401,7 @@ h1, h2, h3, h4, p { margin: 0; }
   margin-top: calc(clamp(24px, 3vw, 44px) * -1); border-radius: clamp(24px, 3vw, 44px) clamp(24px, 3vw, 44px) 0 0;
   min-height: min(100svh, 980px); display: flex; align-items: center;
   padding: clamp(7rem, 12vw, 10rem) var(--gut);
-  background: var(--sea-0) url("assets/video/hero-poster.jpg") 30% 50% / cover no-repeat;
+  background: var(--sea-0) url("../assets/video/hero-poster.jpg") 30% 50% / cover no-repeat;
 }
 .close__video { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: 30% 50%; opacity: 0; transition: opacity 1.4s ease; }
 .close__video.is-playing { opacity: 1; }
@@ -1081,7 +1081,7 @@ a.btn:not([href]) { cursor: pointer; }
    (text stays legible) and lets the glowing tablet light the brand colours from within */
 .pf-hero__img {
   position: absolute; inset: 0; z-index: -2; pointer-events: none;
-  background: url("assets/platform/hero-tablet.jpg") 78% 55% / cover no-repeat;
+  background: url("../assets/platform/hero-tablet.jpg") 78% 55% / cover no-repeat;
   mix-blend-mode: screen; opacity: .9;
   -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.35) 30%, #000 60%); mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.35) 30%, #000 60%);
 }
@@ -1134,7 +1134,7 @@ a.btn:not([href]) { cursor: pointer; }
 /* the convoy photo is grey and soft; luminosity keeps the brand hues and lets the
    wet road and lights carry the picture, faded off on the text side */
 .df-hero .pf-hero__img {
-  background-image: url("assets/defense/defense-bg.jpg"); background-position: 62% 50%;
+  background-image: url("../assets/defense/defense-bg.jpg"); background-position: 62% 50%;
   mix-blend-mode: luminosity; opacity: .55;
 }
 
@@ -1543,7 +1543,7 @@ a.btn:not([href]) { cursor: pointer; }
 @media (max-width: 520px) { .gv-why-list { grid-template-columns: 1fr; } }
 
 /* government header photo: the conference hall, blended like the defense convoy (client photo, 2026-11-10) */
-.gv-hero .pf-hero__img { background-image: url("assets/government/government-bg.jpg"); background-position: 70% 50%; mix-blend-mode: luminosity; opacity: .6; }
+.gv-hero .pf-hero__img { background-image: url("../assets/government/government-bg.jpg"); background-position: 70% 50%; mix-blend-mode: luminosity; opacity: .6; }
 /* manual line break in the challenge lead, desktop only */
 @media (max-width: 600px) { .gv-br { display: none; } }
 
@@ -1603,7 +1603,7 @@ a.btn:not([href]) { cursor: pointer; }
    UTILITIES PAGE (2026-11-10): built on the Government page's parts (kicker, h2,
    capability cards, FAQ, closing) and the Defense tabs, plus its own sections
    ========================================================================== */
-.ut-hero .pf-hero__img { background-image: url("assets/sectors/utilities.jpg"); background-position: 70% 40%; mix-blend-mode: luminosity; opacity: .5; }
+.ut-hero .pf-hero__img { background-image: url("../assets/sectors/utilities.jpg"); background-position: 70% 40%; mix-blend-mode: luminosity; opacity: .5; }
 .ut-hero .pf-title { max-width: 18ch; }
 .ut-intro { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; }
 
@@ -1774,3 +1774,176 @@ a.btn:not([href]) { cursor: pointer; }
 .ut-closing.ut-why .gv-h2 .t-heavy { color: #fff; }
 .ut-closing.ut-why .ut-why__p { color: var(--ink-2); }
 .ut-closing .gv-close { margin-top: clamp(5rem, 10vw, 8rem); }
+
+/* footer logo links home */
+.foot__home { display: block; width: fit-content; border-radius: 6px; transition: opacity .2s var(--ease-out); }
+@media (hover: hover) and (pointer: fine) { .foot__home:hover { opacity: .8; } }
+.foot__home:focus-visible { outline: 2px solid var(--sky); outline-offset: 6px; }
+
+/* ==========================================================================
+   ABOUT PAGE (2026-11-10): gradient header, the Defense scroll timeline for the
+   journey, platform-style value tiles on the brand gradient, a team grid of
+   large round portraits that open a bio dialog, and the Malam Team note
+   ========================================================================== */
+.ab-hero .pf-title { max-width: 16ch; }
+.ab-intro p { max-width: 58ch; }
+
+/* journey: dots instead of numbers, the year above each milestone */
+.ab-journey .df-tl__title .t-thin, .ab-journey .df-tl__title .t-heavy { display: block; }
+.ab-journey .df-tl__title .t-thin { color: rgba(232, 238, 244, .72); }
+.ab-journey .df-tl__title { margin-top: 1rem; max-width: 14ch; }
+.ab-journey .df-tl__head { top: 18vh; }
+.ab-journey .df-tl__n::after { content: ""; width: 10px; height: 10px; border-radius: 50%; background: currentColor; }
+.ab-journey .df-tl__list { gap: clamp(3.5rem, 7vw, 5.5rem); }
+.ab-journey .df-tl__step:nth-child(1) .df-tl__n { --c: #693296; }
+.ab-journey .df-tl__step:nth-child(2) .df-tl__n { --c: #52409f; }
+.ab-journey .df-tl__step:nth-child(3) .df-tl__n { --c: #3d4fb3; }
+.ab-journey .df-tl__step:nth-child(4) .df-tl__n { --c: #2c5dbd; }
+.ab-journey .df-tl__step:nth-child(5) .df-tl__n { --c: #226BC4; }
+.ab-journey .df-tl__step:nth-child(6) .df-tl__n { --c: #3593d0; }
+.ab-yr { font-size: clamp(2.25rem, 3.6vw, 3rem); font-weight: 200; line-height: 1; letter-spacing: -.04em; color: var(--sky); transition: opacity .5s var(--ease-out); }
+.ab-journey .df-tl__h { padding-top: .6rem; }
+.ab-journey .df-tl__p { max-width: 52ch; }
+.js .ab-journey .df-tl__step:not(.is-lit) .ab-yr { opacity: .32; }
+
+/* values: white tiles with gradient line icons on the brand gradient, the platform trust hover */
+.ab-values .gv-h2 { color: #fff; }
+.ab-vals { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(.75rem, 1.4vw, 1.25rem); }
+.ab-vals .gv-cap { padding: clamp(1.5rem, 2.2vw, 2rem); border-radius: 28px; background: #fff; box-shadow: none; display: grid; align-content: start; gap: 1rem; }
+.ab-vals .gv-cap__ico { margin-bottom: .25rem; }
+.ab-vals .gv-cap__h { margin-top: 0; font-size: clamp(1.25rem, 1.6vw, 1.5rem); letter-spacing: -.03em; }
+.ab-vals .gv-cap__p { margin-top: 0; font-size: 1rem; }
+@media (hover: hover) and (pointer: fine) {
+  .ab-vals .gv-cap:hover { box-shadow: 0 26px 50px -24px rgba(11, 26, 43, .55), 0 0 0 1px rgba(255, 255, 255, .6); }
+}
+
+/* team: large round portraits, name and role below; the whole card opens the bio */
+.ab-grid { list-style: none; margin: clamp(3rem, 6vw, 4.5rem) 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(2.5rem, 5vw, 4rem) clamp(1rem, 2.5vw, 2rem); }
+.ab-member { all: unset; box-sizing: border-box; width: 100%; display: grid; justify-items: center; text-align: center; cursor: pointer; border-radius: 24px; padding: .5rem; }
+.ab-member__ph { position: relative; display: block; width: min(100%, 200px); aspect-ratio: 1; border-radius: 50%; overflow: hidden; background: #dfe5ec;
+  box-shadow: 0 0 0 0 transparent; transition: box-shadow .45s var(--ease-out), translate .35s var(--ease-out); }
+.ab-member__ph img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.05); transition: scale .6s var(--ease-out); }
+.ab-member__ph::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: linear-gradient(140deg, rgba(105, 50, 150, .45), rgba(34, 107, 196, .35) 55%, rgba(71, 174, 227, .3)); opacity: 0; transition: opacity .45s var(--ease-out); }
+.ab-member__name { margin-top: 1.25rem; font-size: clamp(1.125rem, 1.5vw, 1.3125rem); font-weight: 700; letter-spacing: -.02em; color: var(--d-ink); }
+.ab-member__role { margin-top: .3rem; font-size: .9375rem; line-height: 1.4; color: var(--d-ink-2); max-width: 22ch; }
+@media (hover: hover) and (pointer: fine) {
+  .ab-member:hover .ab-member__ph { translate: 0 -3px; box-shadow: -14px 12px 40px -16px rgba(105, 50, 150, .4), 0 18px 40px -18px rgba(34, 107, 196, .45), 14px 14px 44px -16px rgba(71, 174, 227, .4); }
+  .ab-member:hover .ab-member__ph img { scale: 1.05; }
+  .ab-member:hover .ab-member__ph::after { opacity: 1; }
+}
+.ab-member:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
+
+/* bio dialog */
+.ab-bio { width: min(640px, calc(100vw - 32px)); max-height: min(86vh, 860px); padding: 0; border: 0; border-radius: 28px; background: #fff; color: var(--d-ink); box-shadow: 0 40px 100px -30px rgba(2, 6, 12, .7); overflow: auto; overscroll-behavior: contain; }
+.ab-bio::backdrop { background: rgba(4, 10, 18, .62); backdrop-filter: blur(4px); }
+.ab-bio[open] { animation: ab-in .38s var(--ease-out); }
+.ab-bio[open]::backdrop { animation: ab-fade .38s ease; }
+.ab-bio.is-closing { animation: ab-out .22s ease-in forwards; }
+.ab-bio.is-closing::backdrop { animation: ab-fade .22s ease-in reverse forwards; }
+@keyframes ab-in { from { opacity: 0; transform: translateY(14px) scale(.98); } }
+@keyframes ab-out { to { opacity: 0; transform: translateY(8px) scale(.98); } }
+@keyframes ab-fade { from { opacity: 0; } }
+.ab-bio__body { padding: clamp(2rem, 5vw, 3rem); }
+.ab-bio__ph { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; filter: grayscale(1); }
+.ab-bio__name { margin-top: 1.25rem; font-size: clamp(1.625rem, 3vw, 2.125rem); font-weight: 800; line-height: 1.1; letter-spacing: -.03em; }
+.ab-bio__role { margin-top: .4rem; font-size: 1rem; font-weight: 600; color: var(--blue); }
+.ab-bio__p { margin-top: 1.5rem; font-size: 1.0625rem; line-height: 1.7; color: var(--d-ink-2); }
+.ab-bio__li { display: inline-flex; align-items: center; gap: .55rem; margin-top: 1.75rem; padding: .7em 1.2em; border-radius: 999px; font-weight: 600; font-size: .9375rem; color: var(--blue); text-decoration: none; box-shadow: inset 0 0 0 1px rgba(34, 107, 196, .3); transition: background-color .2s ease; }
+.ab-bio__li svg { width: 18px; height: 18px; fill: currentColor; }
+.ab-bio__li:hover { background: rgba(34, 107, 196, .08); }
+.ab-bio__close { position: sticky; top: 14px; float: right; margin: 14px 14px 0 0; display: grid; place-items: center; width: 44px; height: 44px; border: 0; border-radius: 50%; background: var(--day); color: var(--d-ink); cursor: pointer; z-index: 1; transition: background-color .2s ease; }
+.ab-bio__close:hover { background: #e3e8ee; }
+.ab-bio__close svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+
+/* malam team */
+.ab-malam__p { font-size: clamp(1.375rem, 2.4vw, 2rem); font-weight: 300; line-height: 1.45; letter-spacing: -.01em; color: var(--ink); max-width: 46ch; }
+
+@media (max-width: 1100px) { .ab-vals { grid-template-columns: repeat(3, minmax(0, 1fr)); } .ab-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 900px) { .ab-journey .df-tl__head { position: static; } }
+@media (max-width: 700px) { .ab-vals, .ab-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 460px) { .ab-vals { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { .ab-bio[open], .ab-bio[open]::backdrop { animation: none; } }
+/* values: the client's own gradient icons (2026-11-10) */
+.ab-val__ico { display: block; width: auto; height: 64px; max-width: 80px; margin-bottom: .25rem; object-fit: contain; object-position: left center; }
+
+/* about header photo: city reflected in glasses, same luminosity blend as the other page headers */
+.ab-hero .pf-hero__img { background-image: url("../assets/about/about-bg.jpg"); background-position: 80% 45%; mix-blend-mode: luminosity; opacity: .6; }
+
+/* contact header on the living brand gradient, like the other page headers (client request, 2026-11-10) */
+.ct-intro { padding-bottom: clamp(5rem, 9vw, 7.5rem); }
+.ct-intro .ct-kicker { color: rgba(255, 255, 255, .85); }
+.ct-intro .ct-title .t-thin { color: rgba(255, 255, 255, .82); }
+.ct-intro .ct-lede { color: rgba(255, 255, 255, .9); }
+.ct-offices { padding-top: clamp(4rem, 8vw, 6.5rem); }
+/* email and social links sit on the dark page just below the gradient header (client request, 2026-11-10) */
+.ct-reach-sec { padding: clamp(3rem, 6vw, 4.5rem) var(--gut) 0; }
+.ct-reach-sec .ct-reach { margin-top: 0; }
+.ct-offices { padding-top: clamp(3rem, 6vw, 4.5rem); }
+@media (max-width: 900px) { .ct-reach-sec { padding-inline: 16px; } }
+
+/* storm line: thin setup, heavy payoff, on its own dark band after the gradient close (option A, client request, 2026-11-10) */
+.storm-band { position: relative; margin-top: calc(clamp(24px, 3vw, 44px) * -1); border-radius: clamp(24px, 3vw, 44px) clamp(24px, 3vw, 44px) 0 0;
+  background: var(--night); padding: clamp(5rem, 10vw, 8rem) var(--gut); text-align: center; box-shadow: 0 -30px 60px -40px rgba(2, 6, 12, .6);
+  border-bottom: 1px solid var(--rule); }
+.storm-band .storm { margin: 0 auto; max-width: none; white-space: normal; font-size: clamp(1.75rem, 3.6vw, 3.25rem); line-height: 1.12; letter-spacing: -.02em; color: var(--ink); }
+.storm-band .t-thin, .storm-band .t-heavy { display: block; }
+.storm-band .t-thin { color: rgba(232, 238, 244, .72); }
+.storm-band .t-heavy { color: #fff; }
+.js .storm-band .rv { display: block; }
+
+/* ==========================================================================
+   PAUSE / PLAY BUTTONS (WCAG 2.2.2, 2026-11-10): one small glass button on every
+   video and every auto-moving strip or rotation; the icon shows what a click does
+   ========================================================================== */
+.mo-btn {
+  display: grid; place-items: center; width: 40px; height: 40px; padding: 0; border: 0; border-radius: 50%; cursor: pointer; z-index: 3;
+  color: #fff; background: rgba(8, 17, 28, .55); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .35);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  transition: background-color .2s ease, transform .2s var(--ease-out);
+}
+.mo-btn svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.mo-btn .mo-btn__play { fill: currentColor; stroke-width: 1.6; display: none; }
+.mo-btn.is-paused .mo-btn__pause { display: none; }
+.mo-btn.is-paused .mo-btn__play { display: block; }
+@media (hover: hover) and (pointer: fine) { .mo-btn:hover { background: rgba(8, 17, 28, .8); } }
+.mo-btn:active { transform: scale(.94); }
+.mo-btn:focus-visible { outline: 3px solid #ffbf00; outline-offset: 3px; }
+.mo-btn[hidden] { display: none; }
+/* on light sheets the button turns dark-on-light */
+.sheet--day .mo-btn { color: var(--d-ink); background: rgba(255, 255, 255, .8); box-shadow: inset 0 0 0 1px rgba(11, 26, 43, .18); }
+@media (hover: hover) and (pointer: fine) { .sheet--day .mo-btn:hover { background: #fff; } }
+
+/* homepage hero video: bottom right of the hero; pausing also stills the button's breathing */
+.hero__pause { position: absolute; left: var(--gut); bottom: clamp(1.25rem, 3vw, 2rem); }
+.hero.is-still .hero__cta .btn { animation-play-state: paused; }
+@media (max-width: 900px) { .hero__pause { left: 16px; } }
+
+/* logo strip: the button sits at the end of the strip */
+.rail-wrap { display: flex; align-items: center; gap: .75rem; min-width: 0; }
+.rail-wrap .rail { flex: 1; min-width: 0; }
+.rail-wrap .mo-btn { flex: none; width: 36px; height: 36px; }
+.rail.is-paused .rail__belt { animation-play-state: paused; }
+
+/* five decisions: top-right corner of the console (first in the DOM so it is reached before the tabs) */
+.console > .dx__pause { position: absolute; z-index: 3; right: clamp(16px, 2vw, 28px); top: clamp(16px, 2vw, 28px); width: 36px; height: 36px; margin: 0; }
+@media (max-width: 700px) { .console__title { padding-right: 44px; } }
+.sheet--day .console .mo-btn { color: #fff; background: rgba(255, 255, 255, .12); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .35); }
+@media (hover: hover) and (pointer: fine) { .sheet--day .console .mo-btn:hover { background: rgba(255, 255, 255, .22); } }
+
+/* sector panels: above the panels, right; the rotation only runs on desktop */
+.panels__pause { margin: clamp(2rem, 4vw, 3rem) 0 0 auto; }
+.panels__pause + .panels { margin-top: 1rem; }
+@media (max-width: 900px) { .panels__pause { display: none; } }
+
+/* platform videos: bottom left of each screen */
+.cap__pause { position: absolute; left: 12px; bottom: 12px; width: 36px; height: 36px; }
+.cap__screen--video { position: relative; }
+
+/* ---------- 404 page ---------- */
+.nf-hero { min-height: 78svh; display: flex; align-items: center; padding-bottom: clamp(4rem, 8vw, 6rem); }
+.nf-hero .wrap { width: 100%; }
+.nf-lede { margin-top: 1.5rem; max-width: 40rem; font-size: 1.125rem; line-height: 1.65; color: rgba(255, 255, 255, .88); }
+.nf-home { margin-top: 2rem; }
+.nf-links { list-style: none; display: flex; flex-wrap: wrap; gap: .6rem; margin: 1.5rem 0 0; padding: 0; }
+.nf-links .btn--ghost { color: #fff; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .45); }
+@media (hover: hover) and (pointer: fine) { .nf-links .btn--ghost:hover { background: rgba(255, 255, 255, .12); } }

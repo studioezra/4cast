@@ -6,9 +6,5 @@
 .taste-skill/
 skills-lock.json
 
-# Large source material kept locally
-4Cast-website-review_1.html
-/assets/
-*.docx
-/4cast_privacy_policy_heb.pdf
-/videos/
+# Source material (review file, documents, raw photos and videos) kept locally
+/source/

@@ -1,0 +1,12 @@
+# Old 4Cast site addresses -> new pages (permanent redirects, so search rankings carry over)
+# Used by Apache web hosts (most shared hosting, including cPanel). Other hosts ignore this file.
+RewriteEngine On
+RewriteRule ^about-us/?$ /about.html [R=301,L]
+RewriteRule ^4cast-decision-intelligence-platform/?$ /platform.html [R=301,L]
+RewriteRule ^defense-national-security/?$ /defense.html [R=301,L]
+RewriteRule ^critical-infrastructure-enterprise/?$ /utilities.html [R=301,L]
+RewriteRule ^government-agencies/?$ /government.html [R=301,L]
+RewriteRule ^contact-us/?$ /contact.html [R=301,L]
+
+# Show the site's own "page not found" page
+ErrorDocument 404 /404.html
