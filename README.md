@@ -2,13 +2,6 @@
 
 Static HTML, CSS and JavaScript. No build step.
 
-## View it
-
-```bash
-python3 -m http.server 4848 --directory site
-```
-
-Then open http://localhost:4848
 
 ## Folders
 
@@ -27,10 +20,3 @@ source/                original material (review file, documents, raw photos and
 DESIGN.md              the design system
 PRODUCT.md             product context and copy rules
 ```
-
-## Notes
-
-- Copy is taken word for word from the approved materials.
-- Sector photos in `site/assets/sectors/` are public-domain stand-ins (sources in `credits.json`).
-- Live address: https://4cast-ai.com (used in the canonical links, sitemap and share tags).
-- Google Analytics and the Contact page maps only load after the visitor accepts cookies (`site/js/consent.js`).
