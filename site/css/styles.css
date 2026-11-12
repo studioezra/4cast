@@ -1953,3 +1953,12 @@ a.btn:not([href]) { cursor: pointer; }
 
 /* About bio popup: the LinkedIn button sits right under the role */
 .ab-bio__role + .ab-bio__li { margin-top: 1rem; }
+
+/* SAP tile: the official SAP Solution Extensions badge (supplied 2026-11-11), top-right corner,
+   centred on the SAP logo (the logo's middle = card padding + 3px margin + half of its 61px height).
+   On phones there is no room beside the logo, so it sits under the paragraph instead. */
+.pillar__sap { display: block; width: auto; height: 40px; margin-top: 1.5rem; }
+@media (min-width: 601px) {
+  .pillar__sap { position: absolute; margin: 0; height: 48px;
+    top: calc(clamp(1.75rem, 2.6vw, 2.5rem) + 33.5px); right: clamp(1.75rem, 2.6vw, 2.5rem); transform: translateY(-50%); }
+}
